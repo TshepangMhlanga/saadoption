@@ -1,23 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'SignUp.dart';
 
-class Login extends StatefulWidget {
+import '../Login/Login.dart';
+
+class SignUp extends StatefulWidget {
   @override
-  _LoginState createState() => _LoginState();
+  _SignUpState createState() => _SignUpState();
 }
 
-class _LoginState extends State<Login> {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
+class _SignUpState extends State<SignUp> {
+  FirebaseAuth _auth = FirebaseAuth.instance;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  String _email, _password;
+  String _name, _email, _password, _phone;
 
-  checkAuthentification() async {
-    _auth.authStateChanges().listen((user) {
+  checkAuthentication() async {
+    _auth.authStateChanges().listen((user) async {
       if (user != null) {
-        print(user);
-
         Navigator.pushReplacementNamed(context, "/");
       }
     });
@@ -26,16 +25,24 @@ class _LoginState extends State<Login> {
   @override
   void initState() {
     super.initState();
-    this.checkAuthentification();
+    this.checkAuthentication();
   }
 
-  login() async {
+  signUp() async {
     if (_formKey.currentState.validate()) {
       _formKey.currentState.save();
 
       try {
-        await _auth.signInWithEmailAndPassword(
+        UserCredential user = await _auth.createUserWithEmailAndPassword(
             email: _email, password: _password);
+        if (user != null) {
+          // UserUpdateInfo updateuser = UserUpdateInfo();
+          // updateuser.displayName = _name;
+          //  user.updateProfile(updateuser);
+          await _auth.currentUser.updateProfile(displayName: _name);
+          // await Navigator.pushReplacementNamed(context,"/") ;
+
+        }
       } catch (e) {
         showError(e.message);
         print(e);
@@ -61,10 +68,6 @@ class _LoginState extends State<Login> {
         });
   }
 
-  navigateToSignUp() async {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => SignUp()));
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -86,7 +89,17 @@ class _LoginState extends State<Login> {
                   children: <Widget>[
                     Container(
                       child: TextFormField(
-                          // ignore: missing_return
+                          validator: (input) {
+                            if (input.isEmpty) return 'Enter Name';
+                          },
+                          decoration: InputDecoration(
+                            labelText: 'Name',
+                            prefixIcon: Icon(Icons.person),
+                          ),
+                          onSaved: (input) => _name = input),
+                    ),
+                    Container(
+                      child: TextFormField(
                           validator: (input) {
                             if (input.isEmpty) return 'Enter Email';
                           },
@@ -98,9 +111,17 @@ class _LoginState extends State<Login> {
                     Container(
                       child: TextFormField(
                           validator: (input) {
-                            // ignore: missing_return, missing_return, missing_return
+                            if (input.isEmpty) return 'Enter Phone Number';
+                          },
+                          decoration: InputDecoration(
+                              labelText: 'Phone Number',
+                              prefixIcon: Icon(Icons.phone)),
+                          onSaved: (input) => _phone = input),
+                    ),
+                    Container(
+                      child: TextFormField(
+                          validator: (input) {
                             if (input.length < 6)
-                              // ignore: missing_return
                               return 'Provide Minimum 6 Character';
                           },
                           decoration: InputDecoration(
@@ -113,8 +134,18 @@ class _LoginState extends State<Login> {
                     SizedBox(height: 20),
                     RaisedButton(
                       padding: EdgeInsets.fromLTRB(70, 10, 70, 10),
-                      onPressed: login,
-                      child: Text('LOGIN',
+                      onPressed:  () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return Login();
+                            },
+                          ),
+                        );
+
+                      },
+                      child: Text('SIGN UP',
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 20.0,
@@ -128,10 +159,6 @@ class _LoginState extends State<Login> {
                 ),
               ),
             ),
-            GestureDetector(
-              child: Text('Create an Account?'),
-              onTap: navigateToSignUp,
-            )
           ],
         ),
       ),

@@ -1,22 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:saadoptionsystem/Main/sidebar/sidebar_layout.dart';
+import '../Register/SignUp.dart';
 
-import 'Login.dart';
-
-class SignUp extends StatefulWidget {
+class Login extends StatefulWidget {
   @override
-  _SignUpState createState() => _SignUpState();
+  _LoginState createState() => _LoginState();
 }
 
-class _SignUpState extends State<SignUp> {
-  FirebaseAuth _auth = FirebaseAuth.instance;
+class _LoginState extends State<Login> {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  String _name, _email, _password, _phone;
+  String _email, _password;
 
-  checkAuthentication() async {
-    _auth.authStateChanges().listen((user) async {
+  checkAuthentification() async {
+    _auth.authStateChanges().listen((user) {
       if (user != null) {
+        print(user);
+
         Navigator.pushReplacementNamed(context, "/");
       }
     });
@@ -25,24 +27,16 @@ class _SignUpState extends State<SignUp> {
   @override
   void initState() {
     super.initState();
-    this.checkAuthentication();
+    this.checkAuthentification();
   }
 
-  signUp() async {
+  login() async {
     if (_formKey.currentState.validate()) {
       _formKey.currentState.save();
 
       try {
-        UserCredential user = await _auth.createUserWithEmailAndPassword(
+        await _auth.signInWithEmailAndPassword(
             email: _email, password: _password);
-        if (user != null) {
-          // UserUpdateInfo updateuser = UserUpdateInfo();
-          // updateuser.displayName = _name;
-          //  user.updateProfile(updateuser);
-          await _auth.currentUser.updateProfile(displayName: _name);
-          // await Navigator.pushReplacementNamed(context,"/") ;
-
-        }
       } catch (e) {
         showError(e.message);
         print(e);
@@ -68,6 +62,10 @@ class _SignUpState extends State<SignUp> {
         });
   }
 
+  navigateToSignUp() async {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => SignUp()));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -89,17 +87,8 @@ class _SignUpState extends State<SignUp> {
                   children: <Widget>[
                     Container(
                       child: TextFormField(
-                          validator: (input) {
-                            if (input.isEmpty) return 'Enter Name';
-                          },
-                          decoration: InputDecoration(
-                            labelText: 'Name',
-                            prefixIcon: Icon(Icons.person),
-                          ),
-                          onSaved: (input) => _name = input),
-                    ),
-                    Container(
-                      child: TextFormField(
+                          // ignore: missing_return
+
                           validator: (input) {
                             if (input.isEmpty) return 'Enter Email';
                           },
@@ -111,17 +100,9 @@ class _SignUpState extends State<SignUp> {
                     Container(
                       child: TextFormField(
                           validator: (input) {
-                            if (input.isEmpty) return 'Enter Phone Number';
-                          },
-                          decoration: InputDecoration(
-                              labelText: 'Phone Number',
-                              prefixIcon: Icon(Icons.phone)),
-                          onSaved: (input) => _phone = input),
-                    ),
-                    Container(
-                      child: TextFormField(
-                          validator: (input) {
+                            // ignore: missing_return, missing_return, missing_return
                             if (input.length < 6)
+                              // ignore: missing_return
                               return 'Provide Minimum 6 Character';
                           },
                           decoration: InputDecoration(
@@ -134,18 +115,17 @@ class _SignUpState extends State<SignUp> {
                     SizedBox(height: 20),
                     RaisedButton(
                       padding: EdgeInsets.fromLTRB(70, 10, 70, 10),
-                      onPressed:  () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) {
-                              return Login();
-                            },
-                          ),
-                        );
-
-                      },
-                      child: Text('SIGN UP',
+    onPressed: () {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) {
+                return SideBarLayout();
+              }
+          )
+      );
+    },
+                      child: Text('LOGIN',
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 20.0,
@@ -159,6 +139,10 @@ class _SignUpState extends State<SignUp> {
                 ),
               ),
             ),
+            GestureDetector(
+              child: Text('Create an Account?'),
+              onTap: navigateToSignUp,
+            )
           ],
         ),
       ),

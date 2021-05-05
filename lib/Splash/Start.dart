@@ -6,10 +6,10 @@ import 'package:flutter_signin_button/button_view.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:saadoptionsystem/rounded_button.dart';
 
-import 'Login.dart';
-import 'SignUp.dart';
+import '../Login/Login.dart';
+import '../Register/SignUp.dart';
 import 'background.dart';
-import 'constants.dart';
+import '../constants.dart';
 
 
 class Start extends StatefulWidget {

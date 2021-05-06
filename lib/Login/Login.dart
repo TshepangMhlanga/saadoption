@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:saadoptionsystem/Main/sidebar/sidebar_layout.dart';
 import '../Register/SignUp.dart';
+import '../rounded_button.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -113,28 +114,19 @@ class _LoginState extends State<Login> {
                           onSaved: (input) => _password = input),
                     ),
                     SizedBox(height: 20),
-                    RaisedButton(
-                      padding: EdgeInsets.fromLTRB(70, 10, 70, 10),
-    onPressed: () {
-      Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) {
-                return SideBarLayout();
-              }
-          )
-      );
-    },
-                      child: Text('LOGIN',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20.0,
-                              fontWeight: FontWeight.bold)),
-                      color: Colors.red,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20.0),
-                      ),
-                    )
+                    RoundedButton(
+                      text: "LOGIN",
+                      press: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return SideBarLayout();
+                            },
+                          ),
+                        );
+                      },
+                    ),
                   ],
                 ),
               ),

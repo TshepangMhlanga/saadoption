@@ -14,7 +14,8 @@ class SideBar extends StatefulWidget {
   _SideBarState createState() => _SideBarState();
 }
 
-class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<SideBar> {
+class _SideBarState extends State<SideBar>
+    with SingleTickerProviderStateMixin<SideBar> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   User user;
   bool isloggedin = false;
@@ -63,7 +64,8 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<S
   @override
   void initState() {
     super.initState();
-    _animationController = AnimationController(vsync: this, duration: _animationDuration);
+    _animationController =
+        AnimationController(vsync: this, duration: _animationDuration);
     isSidebarOpenedStreamController = PublishSubject<bool>();
     isSidebarOpenedStream = isSidebarOpenedStreamController.stream;
     isSidebarOpenedSink = isSidebarOpenedStreamController.sink;
@@ -118,7 +120,10 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<S
                       ListTile(
                         title: Text(
                           "User",
-                          style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w800),
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w800),
                         ),
                         subtitle: Text(
                           "user@gmail.com",
@@ -143,46 +148,21 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<S
                         endIndent: 32,
                       ),
                       MenuItem(
-
                         title: "Adopt A Child",
                         onTap: () {
                           onIconPressed();
-                          BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.AdoptChildClickedEvent);
+                          BlocProvider.of<NavigationBloc>(context)
+                              .add(NavigationEvents.AdoptChildClickedEvent);
                         },
                       ),
                       MenuItem(
-
                         title: "Give Up A Child",
                         onTap: () {
                           onIconPressed();
-                          BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.GiveUpChildClickedEvent);
+                          BlocProvider.of<NavigationBloc>(context)
+                              .add(NavigationEvents.GiveUpChildClickedEvent);
                         },
                       ),
-
-
-                      Divider(
-                        height: 64,
-                        thickness: 0.5,
-                        color: Colors.white.withOpacity(0.3),
-                        indent: 32,
-                        endIndent: 32,
-                      ),
-          MenuItem(
-
-            title: "Report Missing Child",
-            onTap: () {
-              onIconPressed();
-              BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.ReportChildClickedEvent);
-            },
-          ), MenuItem(
-
-                        title: "Report Abondoned  Child",
-                        onTap: () {
-                          onIconPressed();
-                          BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.AbondonedChildClickedEvent);
-                        },
-                      ),
-
                       Divider(
                         height: 64,
                         thickness: 0.5,
@@ -191,11 +171,34 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<S
                         endIndent: 32,
                       ),
                       MenuItem(
-
+                        title: "Report Missing Child",
+                        onTap: () {
+                          onIconPressed();
+                          BlocProvider.of<NavigationBloc>(context)
+                              .add(NavigationEvents.ReportChildClickedEvent);
+                        },
+                      ),
+                      MenuItem(
+                        title: "Report Abondoned  Child",
+                        onTap: () {
+                          onIconPressed();
+                          BlocProvider.of<NavigationBloc>(context)
+                              .add(NavigationEvents.AbondonedChildClickedEvent);
+                        },
+                      ),
+                      Divider(
+                        height: 64,
+                        thickness: 0.5,
+                        color: Colors.white.withOpacity(0.3),
+                        indent: 32,
+                        endIndent: 32,
+                      ),
+                      MenuItem(
                         title: "Nearby Social Centres",
                         onTap: () {
                           onIconPressed();
-                          BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.NearbyCentresChildClickedEvent);
+                          BlocProvider.of<NavigationBloc>(context).add(
+                              NavigationEvents.NearbyCentresChildClickedEvent);
                         },
                       ),
                       MenuItem(

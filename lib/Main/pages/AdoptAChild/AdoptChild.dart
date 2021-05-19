@@ -5,6 +5,7 @@ import 'package:saadoptionsystem/rounded_button.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'Assesments/AptitudeTest.dart';
+import 'Assesments/PsychometricTest.dart';
 
 class AdopterPage extends StatelessWidget with NavigationStates {
   TextEditingController FullName = new TextEditingController();
@@ -14,7 +15,6 @@ class AdopterPage extends StatelessWidget with NavigationStates {
   @override
   Widget build(BuildContext context) {
     return Background(
-
       child: Container(
         padding: EdgeInsets.all(40.0),
         child: Center(
@@ -69,7 +69,7 @@ class AdopterPage extends StatelessWidget with NavigationStates {
                     context,
                     MaterialPageRoute(
                       builder: (context) {
-                        return AptitudeTest();
+                        return PsychometricTest();
                       },
                     ),
                   );

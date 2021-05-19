@@ -1,9 +1,8 @@
 import 'package:saadoptionsystem/Main/bloc.navigation_bloc/navigation_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:saadoptionsystem/Main/pages/AdoptAChild/Assesments/PsychometricTestBody.dart';
 import 'package:saadoptionsystem/Splash/background.dart';
 import '../../../../rounded_button.dart';
-import 'PsychometricTest.dart';
+import '../PossibleMatch.dart';
 
 class AptitudeTestBody extends StatelessWidget with NavigationStates {
   @override
@@ -18,37 +17,53 @@ class AptitudeTestBody extends StatelessWidget with NavigationStates {
               "APTITUDE TEST",
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
+            Text(
+              "Please answer the following with Agree,Disagree or Strongly Agree",
+            ),
             TextField(
-              decoration: InputDecoration(hintText: "Question 1"),
+              decoration:
+                  InputDecoration(hintText: "Love is a biolgical function?*"),
             ),
             SizedBox(
               height: 10.0,
             ),
             TextField(
-              decoration: InputDecoration(hintText: "Question 2"),
+              decoration: InputDecoration(
+                hintText: "I will always regret not reproducing?*",
+              ),
             ),
             SizedBox(
               height: 10.0,
             ),
             TextField(
-              decoration: InputDecoration(hintText: "Question 3"),
+              decoration: InputDecoration(
+                hintText: "It's fine to keep adoption status\n" + " a secret?*",
+                hintMaxLines: 2,
+              ),
             ),
             SizedBox(
               height: 10.0,
             ),
             TextField(
-              decoration: InputDecoration(hintText: "Question 5"),
+              decoration: InputDecoration(
+                hintText:
+                    "Biological heritage is foundational\n" + " to a family?*",
+                hintMaxLines: 2,
+              ),
             ),
             SizedBox(
               height: 10.0,
             ),
             TextField(
-              decoration: InputDecoration(hintText: "Question 6"),
+              decoration: InputDecoration(
+                hintText: "A womens most important role in life\n" +
+                    "is to give birth?*",
+                hintMaxLines: 2,
+              ),
             ),
             SizedBox(
               height: 10.0,
             ),
-
             RoundedButton(
               text: "UPLOAD DOCUMENTS",
             ),
@@ -57,7 +72,7 @@ class AptitudeTestBody extends StatelessWidget with NavigationStates {
               press: () {
                 Navigator.push(context, MaterialPageRoute(
                   builder: (context) {
-                    return PsychometricTest();
+                    return PossibleMatch();
                   },
                 ));
               },

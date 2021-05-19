@@ -31,7 +31,10 @@ class CheckBoxWidget extends State<CheckBox> {
             ),
             SizedBox(height: 20),
             Text(
-              "The terms and conditons here",
+              "Privacy Policy\n" +
+                  "Updated at 2021-05-05 \n" +
+                  "A Adoption System (“we,” “our,” or “us”) is committed to protecting your privacy.\n This Privacy Policy explains how your personal information is collected, used, and disclosed by SA Adoption System.This Privacy Policy applies to our website, and its associated subdomains (collectively, our “Service”) alongside our application, SA Adoption System. By accessing or using our Service, you signify that you have read, understood, and agree to our collection, storage, use, and disclosure of your personal information as described in this Privacy Policy and our Terms of Service.What Information Do We Collect?We collect information from you when you visit our app, register on our site, place an order, subscribe to our newsletter, respond to a survey or fill out a form.\n" +
+                  "We also collect information from mobile devices for a better user experience, although these features are completely optional:",
             ),
             Text(
               "Accept Terms",

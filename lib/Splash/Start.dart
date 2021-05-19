@@ -1,16 +1,15 @@
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/button_list.dart';
 import 'package:flutter_signin_button/button_view.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:saadoptionsystem/Main/sidebar/sidebar_layout.dart';
 import 'package:saadoptionsystem/rounded_button.dart';
 
 import '../Login/Login.dart';
 import '../Register/SignUp.dart';
 import 'background.dart';
 import '../constants.dart';
-
 
 class Start extends StatefulWidget {
   @override
@@ -33,7 +32,8 @@ class _StartState extends State<Start> {
         final UserCredential user =
             await _auth.signInWithCredential(credential);
 
-        await Navigator.pushReplacementNamed(context, "/");
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => SideBarLayout()));
 
         return user;
       } else {
@@ -59,25 +59,24 @@ class _StartState extends State<Start> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-
             SizedBox(height: size.height * 0.05),
             Image.asset(
               'assets/images/logo.png',
-              height:size.height * 0.45,
+              height: size.height * 0.45,
             ),
             SizedBox(height: size.height * 0.05),
             RoundedButton(
               text: "LOGIN",
               press: () {
-              Navigator.push(
-           context,
-    MaterialPageRoute(
-    builder: (context) {
-    return Login();
-    },
-    ),
-    );
-    },
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return Login();
+                    },
+                  ),
+                );
+              },
             ),
             RoundedButton(
               text: "SIGN UP",

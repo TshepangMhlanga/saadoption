@@ -19,8 +19,6 @@ class _LoginState extends State<Login> {
     _auth.authStateChanges().listen((user) {
       if (user != null) {
         print(user);
-
-        Navigator.pushReplacementNamed(context, "/");
       }
     });
   }
@@ -38,6 +36,8 @@ class _LoginState extends State<Login> {
       try {
         await _auth.signInWithEmailAndPassword(
             email: _email, password: _password);
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => SideBarLayout()));
       } catch (e) {
         showError(e.message);
         print(e);
@@ -116,16 +116,7 @@ class _LoginState extends State<Login> {
                     SizedBox(height: 20),
                     RoundedButton(
                       text: "LOGIN",
-                      press: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) {
-                              return SideBarLayout();
-                            },
-                          ),
-                        );
-                      },
+                      press: login,
                     ),
                   ],
                 ),

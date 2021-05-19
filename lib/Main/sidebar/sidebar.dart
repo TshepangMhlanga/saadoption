@@ -48,13 +48,6 @@ class _SideBarState extends State<SideBar>
     await googleSignIn.signOut();
   }
 
-  @override
-  void initState1() {
-    super.initState();
-    this.checkAuthentification();
-    this.getUser();
-  }
-
   AnimationController _animationController;
   StreamController<bool> isSidebarOpenedStreamController;
   Stream<bool> isSidebarOpenedStream;
@@ -69,6 +62,8 @@ class _SideBarState extends State<SideBar>
     isSidebarOpenedStreamController = PublishSubject<bool>();
     isSidebarOpenedStream = isSidebarOpenedStreamController.stream;
     isSidebarOpenedSink = isSidebarOpenedStreamController.sink;
+    this.checkAuthentification();
+    this.getUser();
   }
 
   @override
@@ -119,14 +114,14 @@ class _SideBarState extends State<SideBar>
                       ),
                       ListTile(
                         title: Text(
-                          "User",
+                          "${user.displayName}",
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 18,
                               fontWeight: FontWeight.w800),
                         ),
                         subtitle: Text(
-                          "user@gmail.com",
+                          "${user.email}",
                           style: TextStyle(
                             color: Color(0xFFF1E6FF),
                             fontSize: 18,
@@ -202,9 +197,11 @@ class _SideBarState extends State<SideBar>
                         },
                       ),
                       MenuItem(
-                        title: "Logout",
-                        onTap: signOut,
-                      ),
+                          title: "Logout",
+                          onTap: () {
+                            onIconPressed();
+                            signOut();
+                          }),
                     ],
                   ),
                 ),

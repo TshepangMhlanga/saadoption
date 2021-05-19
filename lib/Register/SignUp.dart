@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
-import '../Login/Login.dart';
+import 'package:saadoptionsystem/Login/Login.dart';
 import '../rounded_button.dart';
 
 class SignUp extends StatefulWidget {
@@ -17,9 +16,7 @@ class _SignUpState extends State<SignUp> {
 
   checkAuthentication() async {
     _auth.authStateChanges().listen((user) async {
-      if (user != null) {
-        Navigator.pushReplacementNamed(context, "/");
-      }
+      if (user != null) {}
     });
   }
 
@@ -41,6 +38,8 @@ class _SignUpState extends State<SignUp> {
           // updateuser.displayName = _name;
           //  user.updateProfile(updateuser);
           await _auth.currentUser.updateProfile(displayName: _name);
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => Login()));
           // await Navigator.pushReplacementNamed(context,"/") ;
 
         }
@@ -133,19 +132,7 @@ class _SignUpState extends State<SignUp> {
                           onSaved: (input) => _password = input),
                     ),
                     SizedBox(height: 20),
-                    RoundedButton(
-                      text: "SIGN UP",
-                      press: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) {
-                              return Login();
-                            },
-                          ),
-                        );
-                      },
-                    )
+                    RoundedButton(text: "SIGN UP", press: signUp)
                   ],
                 ),
               ),

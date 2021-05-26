@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:saadoptionsystem/rounded_button.dart';
 
 import 'AdoptersScreen.dart';
+import 'license_custom_page.dart';
 
 class CheckBox extends StatefulWidget {
   @override
@@ -19,6 +20,7 @@ class CheckBoxWidget extends State<CheckBox> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Background(
       child: Container(
         padding: EdgeInsets.all(32),
@@ -30,11 +32,18 @@ class CheckBoxWidget extends State<CheckBox> {
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 20),
-            Text(
-              "Privacy Policy\n" +
-                  "Updated at 2021-05-05 \n" +
-                  "A Adoption System (“we,” “our,” or “us”) is committed to protecting your privacy.\n This Privacy Policy explains how your personal information is collected, used, and disclosed by SA Adoption System.This Privacy Policy applies to our website, and its associated subdomains (collectively, our “Service”) alongside our application, SA Adoption System. By accessing or using our Service, you signify that you have read, understood, and agree to our collection, storage, use, and disclosure of your personal information as described in this Privacy Policy and our Terms of Service.What Information Do We Collect?We collect information from you when you visit our app, register on our site, place an order, subscribe to our newsletter, respond to a survey or fill out a form.\n" +
-                  "We also collect information from mobile devices for a better user experience, although these features are completely optional:",
+        Image.asset(
+          'assets/images/logo.png',
+          height: size.height * 0.30,
+        ),
+            SizedBox(height: 20),
+            buildButton(
+              text: 'Click Here To Read Terms',
+              onClicked: () => Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => LicensesCustomPage(),
+                ),
+              ),
             ),
             Text(
               "Accept Terms",
@@ -97,4 +106,16 @@ class CheckBoxWidget extends State<CheckBox> {
           return dialog;
         });
   }
+
+  Widget buildButton({
+    @required String text,
+    @required VoidCallback onClicked,
+  }) =>
+      ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          minimumSize: Size.fromHeight(50),
+        ),
+        child: Text(text, style: TextStyle(fontSize: 20)),
+        onPressed: onClicked,
+      );
 }

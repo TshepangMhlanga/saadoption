@@ -38,7 +38,7 @@ class CheckBoxWidget extends State<CheckBox> {
         ),
             SizedBox(height: 20),
             buildButton(
-              text: 'Click Here To Read Terms',
+              text: 'Terms of Use And Privacy Policy',
               onClicked: () => Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) => LicensesCustomPage(),

@@ -1,8 +1,9 @@
 import 'package:saadoptionsystem/Main/bloc.navigation_bloc/navigation_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:saadoptionsystem/Main/pages/AdoptAChild/Assesments/quiz_screen.dart';
 import 'package:saadoptionsystem/Splash/background.dart';
 import '../../../../rounded_button.dart';
-import '../PossibleMatch.dart';
+
 
 class AptitudeTestBody extends StatelessWidget with NavigationStates {
   @override
@@ -18,18 +19,19 @@ class AptitudeTestBody extends StatelessWidget with NavigationStates {
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             Text(
-              "Please answer the following with Agree,Disagree or Strongly Agree",
+              "Home Aspect answer the following questions",
             ),
             TextField(
               decoration:
-                  InputDecoration(hintText: "Love is a biolgical function?*"),
+                  InputDecoration(hintText: "Where is the house situated?*"),
             ),
             SizedBox(
               height: 10.0,
             ),
             TextField(
               decoration: InputDecoration(
-                hintText: "I will always regret not reproducing?*",
+                hintText:
+                    "Stipulate a brief descriotion of home and it's composition?*",
               ),
             ),
             SizedBox(
@@ -46,8 +48,7 @@ class AptitudeTestBody extends StatelessWidget with NavigationStates {
             ),
             TextField(
               decoration: InputDecoration(
-                hintText:
-                    "Biological heritage is foundational\n" + " to a family?*",
+                hintText: "Briefly describe the neibourhood and amenties?*",
                 hintMaxLines: 2,
               ),
             ),
@@ -56,8 +57,7 @@ class AptitudeTestBody extends StatelessWidget with NavigationStates {
             ),
             TextField(
               decoration: InputDecoration(
-                hintText: "A womens most important role in life\n" +
-                    "is to give birth?*",
+                hintText: "How many rooms are there\n" + "is to give birth?*",
                 hintMaxLines: 2,
               ),
             ),
@@ -68,11 +68,11 @@ class AptitudeTestBody extends StatelessWidget with NavigationStates {
               text: "UPLOAD DOCUMENTS",
             ),
             RoundedButton(
-              text: "SUBMIT ANSWERS",
+              text: "SUBMIT ",
               press: () {
                 Navigator.push(context, MaterialPageRoute(
                   builder: (context) {
-                    return PossibleMatch();
+                    return QuizScreenBody();
                   },
                 ));
               },

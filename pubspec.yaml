@@ -34,6 +34,15 @@ dependencies:
   google_sign_in: ^4.5.9
   flutter_bloc: ^6.0.0
   cloud_firestore: ^0.16.0+1
+  firebase_storage: ^7.0.0
+  firebase_database: ^6.0.0
+  get: ^4.1.4
+  flutter_svg: ^0.20.0-nullsafety.3
+  provider: ^4.3.3
+  geolocator: ^6.2.0
+  http: ^0.12.2
+  google_maps_flutter: ^1.2.0
+
 
 dev_dependencies:
   flutter_test:

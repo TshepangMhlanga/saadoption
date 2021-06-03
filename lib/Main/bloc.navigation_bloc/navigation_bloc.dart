@@ -4,6 +4,7 @@ import 'package:saadoptionsystem/Main/pages/AdoptAChild/TermsAndConditions.dart'
 import 'package:saadoptionsystem/Main/pages/GivingUpAChild/GiveUpAChild.dart';
 import 'package:saadoptionsystem/Main/pages/MissingChild/ReportMissingChild.dart';
 import 'package:saadoptionsystem/Main/pages/NearbyPlaces/NearbyCentres.dart';
+import 'package:saadoptionsystem/Main/pages/NearbyPlaces/main_screen_page.dart';
 import 'package:saadoptionsystem/Main/pages/NewsFeed/NewsFeedScreen.dart';
 
 enum NavigationEvents {
@@ -20,7 +21,7 @@ class NavigationBloc extends Bloc<NavigationEvents, NavigationStates> {
   NavigationBloc(NavigationStates initialState) : super(initialState);
 
   @override
-  NavigationStates get initialState => NewsFeedPage();
+  NavigationStates get initialState => App();
 
   @override
   Stream<NavigationStates> mapEventToState(NavigationEvents event) async* {
@@ -38,7 +39,7 @@ class NavigationBloc extends Bloc<NavigationEvents, NavigationStates> {
         yield AbondonedChildPage();
         break;
       case NavigationEvents.NearbyCentresChildClickedEvent:
-        yield NearbyCentresPage();
+        yield MainScreenPage();
         break;
     }
   }

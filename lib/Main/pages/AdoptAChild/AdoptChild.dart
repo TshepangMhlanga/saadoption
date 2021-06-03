@@ -5,7 +5,6 @@ import 'package:saadoptionsystem/rounded_button.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'Assesments/AptitudeTest.dart';
-import 'Assesments/PsychometricTest.dart';
 
 class AdopterPage extends StatelessWidget with NavigationStates {
   TextEditingController FullName = new TextEditingController();
@@ -62,14 +61,14 @@ class AdopterPage extends StatelessWidget with NavigationStates {
                     "Full Name": FullName.text,
                     "Ethnicity": Ethnicity.text,
                     "ID number": Idnumber.text,
-                    "Home Adrress": HomeAdress.text
+                    "Home Address": HomeAdress.text
                   };
                   FirebaseFirestore.instance.collection("Adopter").add(data);
                   Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (context) {
-                        return PsychometricTest();
+                        return AptitudeTest();
                       },
                     ),
                   );

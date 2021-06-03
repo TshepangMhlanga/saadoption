@@ -10,7 +10,7 @@ class SideBarLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocProvider<NavigationBloc>(
-        create: (context) => NavigationBloc(NewsFeedPage()),
+        create: (context) => NavigationBloc(App()),
         child: Stack(
           children: <Widget>[
             BlocBuilder<NavigationBloc, NavigationStates>(

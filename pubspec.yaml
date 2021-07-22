@@ -42,6 +42,9 @@ dependencies:
   geolocator: ^6.2.0
   http: ^0.12.2
   google_maps_flutter: ^1.2.0
+  firebase_messaging: "^8.0.0-dev.15"
+  
+ 
 
 
 dev_dependencies:

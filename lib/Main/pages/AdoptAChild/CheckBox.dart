@@ -56,12 +56,12 @@ class CheckBoxWidget extends State<CheckBox> {
                 children: <Widget>[
                   Checkbox(
                     value: isChecked,
-                    onChanged: (bool b) {
+                    onChanged: (bool? b) {
                       setState(() {
-                        isChecked = b;
+                        isChecked = b!;
                       });
-                    },
-                  ),
+                    }),
+
                   Container(
                     margin: EdgeInsets.only(left: 4),
                     child:
@@ -74,7 +74,7 @@ class CheckBoxWidget extends State<CheckBox> {
                 margin: EdgeInsets.only(top: 32),
                 child: RoundedButton(
                   text: "CONTINUE",
-                  press: isChecked ? displayMessage : null,
+                  press: isChecked ? displayMessage : null!,
                 )),
           ],
         ),
@@ -108,8 +108,8 @@ class CheckBoxWidget extends State<CheckBox> {
   }
 
   Widget buildButton({
-    @required String text,
-    @required VoidCallback onClicked,
+    required String text,
+    required VoidCallback onClicked,
   }) =>
       ElevatedButton(
         style: ElevatedButton.styleFrom(

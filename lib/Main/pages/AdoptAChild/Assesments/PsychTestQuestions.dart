@@ -3,7 +3,7 @@ class PsychTestQuestions {
   final String question;
   final List<String> options;
 
-  PsychTestQuestions({this.id, this.question, this.options});
+  PsychTestQuestions({required this.id, required this.question, required this.options});
 }
 
 const List sample_data = [

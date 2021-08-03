@@ -38,7 +38,7 @@ class NewsFeedScreen extends StatelessWidget with NavigationStates {
 }
 
 class NewsFeedCard extends StatelessWidget {
-  const NewsFeedCard({Key key}) : super(key: key);
+  const NewsFeedCard({Key ?key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

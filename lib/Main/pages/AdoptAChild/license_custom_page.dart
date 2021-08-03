@@ -23,7 +23,7 @@ class LicensesCustomPage extends StatelessWidget {
                 if (snapshot.hasError) {
                   return Center(child: Text('Some error occurred!'));
                 } else {
-                  return LicensesWidget(licenses: licenses);
+                  return LicensesWidget((licenses)!, licenses: [],);
                 }
             }
           },

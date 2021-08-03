@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MyHomePage({Key ?key, required this.title}) : super(key: key);
   final String title;
 
   @override
@@ -75,7 +75,7 @@ class _MyHomePageState extends State<MyHomePage> {
     showDialog<bool>(
       context: context,
       builder: (_) => _buildDialog(context, _itemForMessage(message)),
-    ).then((bool shouldNavigate) {
+    ).then((bool? shouldNavigate) {
       if (shouldNavigate == true) {
         _navigateToItemDetail(message);
       }
@@ -92,20 +92,25 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   initializeFCM() {
-    _firebaseMessaging.configure(
-      onMessage: (Map<String, dynamic> message) async {
+    FirebaseMessaging.onMessage.listen((event) {
+      onMessage:
+          (Map<String, dynamic> message) async {
         print("onMessage: $message");
         _showItemDialog(message);
-      },
+      };
       onLaunch: (Map<String, dynamic> message) async {
-        print("onLaunch: $message");
-        _navigateToItemDetail(message);
-      },
+      print("onLaunch: $message");
+      _navigateToItemDetail(message);
+      };
       onResume: (Map<String, dynamic> message) async {
-        print("onResume: $message");
-        _navigateToItemDetail(message);
-      },
-    );
+      print("onResume: $message");
+      _navigateToItemDetail(message);
+      };
+    });
+      FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+      // fetchRideInfo(getRideID(message), context);
+
+      });
 
     _firebaseMessaging.getToken().then((String token) {
       assert(token != null);

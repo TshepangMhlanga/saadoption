@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:saadoptionsystem/Login/Login.dart';
 
 class Item {
-  Item({this.itemId});
-  final String itemId;
+Item({required this.itemId});
+ late  final String itemId;
 
   StreamController<Item> _controller = StreamController<Item>.broadcast();
   Stream<Item> get onChanged => _controller.stream;
 
-  String _status;
+  late String _status;
   String get status => _status;
   set status(String value) {
     _status = value;

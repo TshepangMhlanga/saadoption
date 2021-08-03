@@ -3,7 +3,7 @@ import 'package:saadoptionsystem/Main/pages/NearbyPlaces/place.dart';
 
 class MarkerService {
 
-  LatLngBounds bounds(Set<Marker> markers) {
+  LatLngBounds? bounds(Set<Marker> markers) {
     if (markers == null || markers.isEmpty) return null;
     return createBounds(markers.map((m) => m.position).toList());
   }

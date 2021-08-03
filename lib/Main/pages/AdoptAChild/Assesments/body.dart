@@ -11,7 +11,7 @@ import 'progress_bar.dart';
 
 class BodyQuiz extends StatelessWidget with NavigationStates{
   const BodyQuiz({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -41,14 +41,14 @@ class BodyQuiz extends StatelessWidget with NavigationStates{
                           "Question ${_questionController.questionNumber.value}",
                       style: Theme.of(context)
                           .textTheme
-                          .headline4
+                          .headline4!
                           .copyWith(color: kPrimaryColor),
                       children: [
                         TextSpan(
                           text: "/${_questionController.questions.length}",
                           style: Theme.of(context)
                               .textTheme
-                              .headline5
+                              .headline5!
                               .copyWith(color: kPrimaryColor),
                         ),
                       ],

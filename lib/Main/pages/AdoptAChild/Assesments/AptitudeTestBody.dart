@@ -75,7 +75,7 @@ class AptitudeTestBody extends StatelessWidget with NavigationStates {
               height: 10.0,
             ),
             RoundedButton(
-              text: "UPLOAD DOCUMENTS",
+              text: "UPLOAD DOCUMENTS", press: () {  },
             ),
             RoundedButton(
               text: "SUBMIT",

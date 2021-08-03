@@ -5,9 +5,9 @@ import 'package:saadoptionsystem/model/license.dart';
 class LicensesWidget extends StatelessWidget {
   final List<License> licenses;
 
-  const LicensesWidget({
-    Key key,
-    @required this.licenses,
+  const LicensesWidget(List<License> list, {
+    Key ?key,
+    required this.licenses,
   }) : super(key: key);
 
   @override

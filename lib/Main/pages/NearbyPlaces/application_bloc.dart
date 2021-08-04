@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:geolocator/geolocator.dart';
+
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:saadoptionsystem/Main/pages/NearbyPlaces/location.dart';
 import 'package:saadoptionsystem/Main/pages/NearbyPlaces/place.dart';
@@ -19,14 +20,16 @@ class ApplicationBloc with ChangeNotifier  {
   final markerService = MarkerService();
 
   //Variables
-  Position currentLocation;
-  List<PlaceSearch> searchResults;
-  StreamController<Place> selectedLocation = StreamController<Place>();
-  StreamController<LatLngBounds> bounds = StreamController<LatLngBounds>();
-  Place selectedLocationStatic;
-  String placeType;
-  List<Place> placeResults;
-  List<Marker> markers = List<Marker>();
+  late Position? currentLocation;
+  late List<PlaceSearch>? searchResults;
+  // ignore: close_sinks
+  StreamController<Place>? selectedLocation = StreamController<Place>();
+  // ignore: close_sinks
+  StreamController<LatLngBounds>? bounds = StreamController<LatLngBounds>();
+  late Place? selectedLocationStatic;
+  late String? placeType;
+  late List<Place>? placeResults;
+  List<Marker>? markers = <Marker>[];
 
 
   ApplicationBloc() {
@@ -36,9 +39,9 @@ class ApplicationBloc with ChangeNotifier  {
 
   setCurrentLocation() async {
     currentLocation = await geoLocatorService.getCurrentLocation();
-    selectedLocationStatic = Place(name: null,
+    selectedLocationStatic = Place(
       geometry: Geometry(location: Location(
-          lat: currentLocation.latitude, lng: currentLocation.longitude),),);
+          lat: currentLocation!.latitude, lng: currentLocation!.longitude),), vicinity: '', name: '',);
     notifyListeners();
   }
 
@@ -50,14 +53,15 @@ class ApplicationBloc with ChangeNotifier  {
 
   setSelectedLocation(String placeId) async {
     var sLocation = await placesService.getPlace(placeId);
-    selectedLocation.add(sLocation);
+    selectedLocation!.add(sLocation);
     selectedLocationStatic = sLocation;
-    searchResults = null;
+    searchResults =null;
     notifyListeners();
   }
 
   clearSelectedLocation() {
-    selectedLocation.add(null);
+    // ignore: unnecessary_statements
+    selectedLocation!=null;
     selectedLocationStatic = null;
     searchResults = null;
     placeType = null;
@@ -73,19 +77,19 @@ class ApplicationBloc with ChangeNotifier  {
 
     if (placeType != null) {
       var places = await placesService.getPlaces(
-          selectedLocationStatic.geometry.location.lat,
-          selectedLocationStatic.geometry.location.lng, placeType);
+          selectedLocationStatic!.geometry.location.lat,
+          selectedLocationStatic!.geometry.location.lng, placeType!);
       markers= [];
       if (places.length > 0) {
         var newMarker = markerService.createMarkerFromPlace(places[0],false);
-        markers.add(newMarker);
+        markers!.add(newMarker);
       }
 
-      var locationMarker = markerService.createMarkerFromPlace(selectedLocationStatic,true);
-      markers.add(locationMarker);
+      var locationMarker = markerService.createMarkerFromPlace(selectedLocationStatic!,true);
+      markers!.add(locationMarker);
 
-      var _bounds = markerService.bounds(Set<Marker>.of(markers));
-      bounds.add(_bounds);
+      var _bounds = markerService.bounds(Set<Marker>.of(markers!));
+      bounds!.add(_bounds!);
 
       notifyListeners();
     }
@@ -95,7 +99,8 @@ class ApplicationBloc with ChangeNotifier  {
 
   @override
   void dispose() {
-    selectedLocation.close();
-    bounds.close();
+
+    selectedLocation!.close();
+    bounds!.close();
     super.dispose();
   }}

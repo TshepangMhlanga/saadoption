@@ -12,7 +12,7 @@ class _SignUpState extends State<SignUp> {
   FirebaseAuth _auth = FirebaseAuth.instance;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  String _name, _email, _password, _phone;
+  late String _name, _email, _password, _phone;
 
   checkAuthentication() async {
     _auth.authStateChanges().listen((user) async {
@@ -27,8 +27,8 @@ class _SignUpState extends State<SignUp> {
   }
 
   signUp() async {
-    if (_formKey.currentState.validate()) {
-      _formKey.currentState.save();
+    if (_formKey.currentState!.validate()) {
+      _formKey.currentState!.save();
 
       try {
         UserCredential user = await _auth.createUserWithEmailAndPassword(
@@ -44,7 +44,8 @@ class _SignUpState extends State<SignUp> {
 
         }
       } catch (e) {
-        showError(e.message);
+
+       // showError(e.message);
         print(e);
       }
     }
@@ -90,38 +91,38 @@ class _SignUpState extends State<SignUp> {
                     Container(
                       child: TextFormField(
                           validator: (input) {
-                            if (input.isEmpty) return 'Enter Name';
+                            if (input!.isEmpty) return 'Enter Name';
                           },
                           decoration: InputDecoration(
                             labelText: 'Name',
                             prefixIcon: Icon(Icons.person),
                           ),
-                          onSaved: (input) => _name = input),
+                          onSaved: (input) => _name = input!),
                     ),
                     Container(
                       child: TextFormField(
                           validator: (input) {
-                            if (input.isEmpty) return 'Enter Email';
+                            if (input!.isEmpty) return 'Enter Email';
                           },
                           decoration: InputDecoration(
                               labelText: 'Email',
                               prefixIcon: Icon(Icons.email)),
-                          onSaved: (input) => _email = input),
+                          onSaved: (input) => _email = input!),
                     ),
                     Container(
                       child: TextFormField(
                           validator: (input) {
-                            if (input.isEmpty) return 'Enter Phone Number';
+                            if (input!.isEmpty) return 'Enter Phone Number';
                           },
                           decoration: InputDecoration(
                               labelText: 'Phone Number',
                               prefixIcon: Icon(Icons.phone)),
-                          onSaved: (input) => _phone = input),
+                          onSaved: (input) => _phone = input!),
                     ),
                     Container(
                       child: TextFormField(
                           validator: (input) {
-                            if (input.length < 6)
+                            if (input!.length < 6)
                               return 'Provide Minimum 6 Character';
                           },
                           decoration: InputDecoration(
@@ -129,7 +130,7 @@ class _SignUpState extends State<SignUp> {
                             prefixIcon: Icon(Icons.lock),
                           ),
                           obscureText: true,
-                          onSaved: (input) => _password = input),
+                          onSaved: (input) => _password = input!),
                     ),
                     SizedBox(height: 20),
                     RoundedButton(text: "SIGN UP", press: signUp)

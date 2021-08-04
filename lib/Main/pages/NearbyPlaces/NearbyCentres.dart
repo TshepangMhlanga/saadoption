@@ -11,7 +11,7 @@ import 'package:saadoptionsystem/Main/pages/NearbyPlaces/place.dart';
 import 'application_bloc.dart';
 
 class NearbyCentresPage extends StatefulWidget  {
-  NearbyCentresPage({Key key}) : super(key: key);
+  NearbyCentresPage({Key ?key}) : super(key: key);
 
   @override
   _NearbyCentresPageState createState() => _NearbyCentresPageState();
@@ -19,8 +19,8 @@ class NearbyCentresPage extends StatefulWidget  {
 
 class _NearbyCentresPageState extends State<NearbyCentresPage> {
   Completer<GoogleMapController> _mapController = Completer();
-  StreamSubscription locationSubscription;
-  StreamSubscription boundsSubscription;
+  late StreamSubscription locationSubscription;
+  late StreamSubscription boundsSubscription;
   final _locationController = TextEditingController();
 
   @override
@@ -31,7 +31,7 @@ class _NearbyCentresPageState extends State<NearbyCentresPage> {
 
     //Listen for selected Location
     locationSubscription =
-        applicationBloc.selectedLocation.stream.listen((place) {
+        applicationBloc.selectedLocation!.stream.listen((place) {
           if (place != null) {
             _locationController.text = place.name;
             _goToPlace(place);
@@ -39,7 +39,7 @@ class _NearbyCentresPageState extends State<NearbyCentresPage> {
             _locationController.text = "";
         });
 
-    applicationBloc.bounds.stream.listen((bounds) async {
+    applicationBloc.bounds!.stream.listen((bounds) async {
       final GoogleMapController controller = await _mapController.future;
       controller.animateCamera(CameraUpdate.newLatLngBounds(bounds, 50));
     });
@@ -90,18 +90,18 @@ class _NearbyCentresPageState extends State<NearbyCentresPage> {
                           myLocationEnabled: true,
                           initialCameraPosition: CameraPosition(
                             target: LatLng(
-                                applicationBloc.currentLocation.latitude,
-                                applicationBloc.currentLocation.longitude),
+                                applicationBloc.currentLocation!.latitude,
+                                applicationBloc.currentLocation!.longitude),
                             zoom: 14,
                           ),
                           onMapCreated: (GoogleMapController controller) {
                             _mapController.complete(controller);
                           },
-                          markers: Set<Marker>.of(applicationBloc.markers),
+                          markers: Set<Marker>.of(applicationBloc.markers!),
                         ),
                       ),
                       if (applicationBloc.searchResults != null &&
-                          applicationBloc.searchResults.length != 0)
+                          applicationBloc.searchResults!.length != 0)
                         Container(
                             height: 300.0,
                             width: double.infinity,
@@ -112,18 +112,18 @@ class _NearbyCentresPageState extends State<NearbyCentresPage> {
                         Container(
                           height: 300.0,
                           child: ListView.builder(
-                              itemCount: applicationBloc.searchResults.length,
+                              itemCount: applicationBloc.searchResults!.length,
                               itemBuilder: (context, index) {
                                 return ListTile(
                                   title: Text(
                                     applicationBloc
-                                        .searchResults[index].description,
+                                        .searchResults![index].description,
                                     style: TextStyle(color: Colors.white),
                                   ),
                                   onTap: () {
                                     applicationBloc.setSelectedLocation(
                                         applicationBloc
-                                            .searchResults[index].placeId);
+                                            .searchResults![index].placeId);
                                   },
                                 );
                               }),

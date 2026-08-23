@@ -51,7 +51,7 @@ flutter test
 - [Flutter Documentation](https://flutter.dev/docs)  
 - [Dart Language Guide](https://dart.dev/guides)  
 
-## 👤 Main Developer and Contributor
+## 👤Contributor
 - **Tshepang Mhlanga**
 
 

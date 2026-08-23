@@ -1,16 +1,58 @@
-# saadoptionsystem
+# SA Adoption App
 
-A new Flutter application.
+## 📌 Overview
+The **SA Adoption System** is a Flutter-based mobile application designed to streamline and digitize the adoption process in South Africa. It provides a secure platform for prospective parents, adoption agencies, and administrators to manage applications, track progress, and ensure transparency throughout the adoption journey.
 
-## Getting Started
+## 🚀 Features
+- **User Authentication**: Secure login and registration for all users.
+- **Application Management**: Submit and track adoption applications digitally.
+- **Agency Dashboard**: Tools for agencies to review, approve, and manage cases.
+- **Notifications**: Real-time updates on application status.
+- **Cross-Platform Support**: Built with Flutter, runs on both Android and iOS.
 
-This project is a starting point for a Flutter application.
+## 🛠️ Tech Stack
+- **Framework**: Flutter
+- **Language**: Dart
+- **Platforms**: Android & iOS
+- **Version Control**: GitHub
 
-A few resources to get you started if this is your first Flutter project:
+## 📂 Project Structure
+- `android/` – Android-specific files  
+- `ios/` – iOS-specific files  
+- `lib/` – Main application code (Flutter/Dart)  
+- `assets/` – Images, icons, and other resources  
+- `test/` – Unit and widget tests  
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+## ⚙️ Getting Started
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/TshepangMhlanga/saadoption.git
+   ```
+2. **Navigate to the project folder**:
+   ```bash
+   cd saadoption
+   ```
+3. **Install dependencies**:
+   ```bash
+   flutter pub get
+   ```
+4. **Run the app**:
+   ```bash
+   flutter run
+   ```
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 🧪 Testing
+Run unit and widget tests with:
+```bash
+flutter test
+```
+
+## 📖 Resources
+- [Flutter Documentation](https://flutter.dev/docs)  
+- [Dart Language Guide](https://dart.dev/guides)  
+
+## 👤 Main Developer and Contributor
+- **Tshepang Mhlanga**
+
+
+Would you like me to make this README **more formal for external stakeholders** (e.g., adoption agencies, NGOs) or **developer-focused** (with more technical setup and contribution guidelines)?

@@ -23,29 +23,6 @@ The **SA Adoption System** is a Flutter-based mobile application designed to str
 - `assets/` – Images, icons, and other resources  
 - `test/` – Unit and widget tests  
 
-## ⚙️ Getting Started
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/TshepangMhlanga/saadoption.git
-   ```
-2. **Navigate to the project folder**:
-   ```bash
-   cd saadoption
-   ```
-3. **Install dependencies**:
-   ```bash
-   flutter pub get
-   ```
-4. **Run the app**:
-   ```bash
-   flutter run
-   ```
-
-## 🧪 Testing
-Run unit and widget tests with:
-```bash
-flutter test
-```
 
 ## 📖 Resources
 - [Flutter Documentation](https://flutter.dev/docs)  
@@ -53,6 +30,7 @@ flutter test
 
 ## 👤Contributor
 - **Tshepang Mhlanga**
+- **Masego Mmotlana**
+- **Justice Lekhotla**
+- **Zandile Ngwevu**
 
-
-Would you like me to make this README **more formal for external stakeholders** (e.g., adoption agencies, NGOs) or **developer-focused** (with more technical setup and contribution guidelines)?
